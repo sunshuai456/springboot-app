@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.mapper.UserMapper">
+
+    <resultMap id="user" type="com.mars.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+        <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+    </resultMap>
+
+    <sql id="select">
+        select *
+        from tb_user
+    </sql>
+
+    <select id="findById" resultMap="user">
+        <include refid="select"/>
+        where id = #{id}
+    </select>
+
+    <select id="findByUserName" resultMap="user">
+        <include refid="select"/>
+        where user_name = #{userName}
+    </select>
+
+    <insert id="save">
+        insert into tb_user(add_time, user_name, password, real_name)
+        values (#{addTime}, #{userName}, #{password}, #{realName})
+    </insert>
+
+    <update id="update">
+        update tb_user
+        set user_name=#{userName},
+            password=#{password},
+            real_name=#{realName}
+        where id = #{id}
+    </update>
+
+    <update id="delete">
+        update tb_user
+        set delete_time=#{deleteTime}
+        where id = #{id}
+    </update>
+
+</mapper>

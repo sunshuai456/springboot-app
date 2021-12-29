@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    username: root
+    password: sunshuai
+    url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+springdoc:
+  cache:
+    disabled: true
+  api-docs:
+    path: /docs.json
+  swagger-ui:
+    path: /docs
+    disable-swagger-default-url: false
+
